@@ -1,0 +1,16 @@
+<html>
+<head>
+  <title>IRSSI Links</title>
+</head>
+<body>
+  <table>
+    {% for link in links %}
+    <tr>
+      <td>{{ link['timestamp'] }}</td>
+      <td>{{ link['user'] }}</td>
+      <td><a href="{{ link['link'] }}">{{ link['link'] }}</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>
