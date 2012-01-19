@@ -11,7 +11,7 @@ def parse_lines(lines):
     if re.match(r'\d{2}:\d{2} -!-', line):
       continue
 
-    match = re.search(r'http://[-a-zA-Z0-9.?$%&/=_~#.,:;+]*', line)
+    match = re.search(r'http://[-a-zA-Z0-9.?$!%&/=_~#.,:;+]*', line)
     if match:
       timestamp = re.match(r'\d{2}:\d{2}', line).group(0)
       search = re.search(r'<.([^>]+)>', line)
