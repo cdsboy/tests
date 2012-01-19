@@ -38,4 +38,4 @@ def show_links():
   return render_template('show_links.html', links=links)
 
 if __name__ == '__main__':
-  app.run()
+  app.run(debug=True)
