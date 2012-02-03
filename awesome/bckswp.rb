@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 BACKGROUND_DIR = "/home/cdsboy/Pictures/Backgrounds"
+MINUTES_TO_WAIT = 15
 
 def set_wallpaper
   # make sure file exists before reading it
@@ -21,5 +22,5 @@ end
 
 while true
   set_wallpaper
-  sleep 60*15
+  sleep 60*MINUTES_TO_WAIT
 end
