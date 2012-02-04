@@ -16,7 +16,7 @@ def set_wallpaper
     new_background = files[rand(files.length)]
   end
 
-  new_background.gsub!(/[\[\]*! "]/) {|s| s = "\\" + s }
+  new_background.gsub!(/[\[\]*! &"]/) {|s| s = "\\" + s }
   
   File.open(BACKGROUND_DIR + "/.curback", 'w') {|f| f.write(new_background) }
   system "awsetbg %s/%s" % [BACKGROUND_DIR, new_background]
