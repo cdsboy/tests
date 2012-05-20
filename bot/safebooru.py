@@ -29,3 +29,6 @@ def get_tag(jenni, input):
   jenni.say('Your %s: http://safebooru.org/%s' % (tag, url))
 get_tag.commands = ['gimmie %s' % tag for tag in TAGS.keys()]
 get_tag.priority = 'high'
+
+if __name__ == '__main__':
+  print __doc__.strip()

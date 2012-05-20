@@ -43,3 +43,6 @@ def mal_search(jenni, input):
     jenni.say('Sorry, there was an error performing your search.')
 mal_search.commands = ['malsearch']
 mal_search.priority = 'high'
+
+if __name__ == '__main__':
+  print __doc__.strip()
