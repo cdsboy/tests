@@ -6,6 +6,7 @@ A Jenni Module to do various things with safebooru
 """
 
 from bs4 import BeautifulSoup
+from tsun import tsunsay
 import urllib2
 import urllib
 import random
@@ -16,6 +17,7 @@ TAGS = {
     'pantsu' : 'pantsu',
 }
 
+@tsunsay()
 def get_tag(jenni, input):
   tag = input[len('.gimmie '):]
   url = 'http://safebooru.org/index.php?page=post&s=list&tags=%s&pid=%d' % (TAGS[tag], random.randint(0,2500))
@@ -28,7 +30,7 @@ def get_tag(jenni, input):
   soup = BeautifulSoup(resp.read())
   url = random.choice(soup.select("span.thumb a")).get("href")
   jenni.say('Your %s: http://safebooru.org/%s' % (tag, url))
-get_tag.commands = ['gimmie %s' % tag for tag in TAGS.keys()]
+get_tag.commands = ['gimme %s' % tag for tag in TAGS.keys()]
 get_tag.priority = 'high'
 
 if __name__ == '__main__':

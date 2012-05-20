@@ -6,9 +6,11 @@ A Jenni Module to recognize niconico.jp links and print their titles
 """
 
 from xml.etree.ElementTree import ElementTree
+from tsun import tsunsay
 import urllib2
 import re
 
+@tsunsay()
 def niconico_link_title(jenni, input):
   match = re.search(r'http://[-a-zA-Z0-9.?$!%&/=_~#.,:;+]*', input)
   if match:

@@ -5,6 +5,7 @@ Author: cdsboy
 A Jenni Module to search MyAnimeList.Net
 """
 
+from tsun import tsunsay
 import urllib2
 import urllib
 import json
@@ -14,6 +15,7 @@ DISPLAY_NUM = 4
 def mal_url(id):
   return 'http://myanimelist.net/anime/%s/' % id
 
+@tsunsay()
 def mal_search(jenni, input):
   title = input[len('.malsearch '):]
   data = urllib.urlencode({'q' : title})

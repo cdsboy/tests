@@ -6,6 +6,7 @@ A Jenni Module to recognize youtube links and print their titles
 """
 
 from gdata.service import RequestError
+from tsun import tsunsay
 import gdata.youtube.service
 import urlparse
 import re
@@ -14,6 +15,7 @@ yt_service = gdata.youtube.service.YouTubeService()
 
 EXCLUSION_CHAR = '!'
 
+@tsunsay()
 def youtube_link_title(jenni, input):
   match = re.search(r'http://[-a-zA-Z0-9.?$!%&/=_~#.,:;+]*', input)
   if match:
@@ -27,6 +29,7 @@ def youtube_link_title(jenni, input):
 youtube_link_title.rule = r'(?u).*((?<!!)http://www\.youtube\.com)'
 youtube_link_title.priority = 'high'
 
+@tsunsay()
 def youtube_shortlink_title(jenni, input):
   match = re.search(r'http://youtu.be/[A-Za-z0-9\-_]*', input)
   if match:
