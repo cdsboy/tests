@@ -12,7 +12,7 @@ import re
 
 @tsunsay()
 def niconico_link_title(jenni, input):
-  match = re.search(r'http://[-a-zA-Z0-9.?$!%&/=_~#.,:;+]*', input)
+  match = re.search(r'https?://[-a-zA-Z0-9.?$!%&/=_~#.,:;+]*', input)
   if match:
     id = match.group(0).split('/')[-1]
     url = 'http://ext.nicovideo.jp/api/getthumbinfo/%s' % id
@@ -24,7 +24,7 @@ def niconico_link_title(jenni, input):
       return
     title = data[data.index('<title>')+len('<title>'):data.index('</title>')]
     jenni.say('NicoNico: %s' % title)
-niconico_link_title.rule = r'(?u).*((?<!!)http://www\.nicovideo\.jp/watch/sm)|((?<!!)http://video\.niconico\.com/watch/sm)'
+niconico_link_title.rule = r'(?u).*((?<!!)https?://www\.nicovideo\.jp/watch/sm)|((?<!!)https?://video\.niconico\.com/watch/sm)'
 niconico_link_title.priority = 'high'
 
 if __name__ == '__main__':
