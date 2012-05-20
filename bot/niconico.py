@@ -25,5 +25,5 @@ def niconico_link_title(jenni, input):
 niconico_link_title.rule = r'(?u).*((?<!!)http://www\.nicovideo\.jp/watch/sm)|((?<!!)http://video\.niconico\.com/watch/sm)'
 niconico_link_title.priority = 'high'
 
-if __name__ = '__main__':
+if __name__ == '__main__':
   print __doc__.strip()

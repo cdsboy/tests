@@ -13,6 +13,7 @@ import random
 TAGS = {
     'loli' : 'loli',
     'oppai' : 'cleavage',
+    'pantsu' : 'pantsu',
 }
 
 def get_tag(jenni, input):
@@ -25,7 +26,7 @@ def get_tag(jenni, input):
     jenni.say("No %s for you!" % tag)
 
   soup = BeautifulSoup(resp.read())
-  url = soup.select("span.thumb a")[0].get("href")
+  url = random.choice(soup.select("span.thumb a")).get("href")
   jenni.say('Your %s: http://safebooru.org/%s' % (tag, url))
 get_tag.commands = ['gimmie %s' % tag for tag in TAGS.keys()]
 get_tag.priority = 'high'
