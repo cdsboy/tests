@@ -19,7 +19,7 @@ TAGS = {
 
 @tsunsay()
 def get_tag(jenni, input):
-  tag = input[len('.gimmie '):]
+  tag = input[len('.gimme '):]
   url = 'http://safebooru.org/index.php?page=post&s=list&tags=%s&pid=%d' % (TAGS[tag], random.randint(0,2500))
   req = urllib2.Request(url)
   try:

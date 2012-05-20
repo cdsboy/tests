@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 """
-amiami.py - Jenni AmiAmi.com Module
+gelbooru.py - Jenni Gelbooru Module
 Author: cdsboy
-A Jenni Module to recognize AmiAmi.com links and list the item's name and price
+A Jenni Module to reconginze Gelbooru links and warn users if they contain certain tags
 """
 
 from tsun import tsunsay
