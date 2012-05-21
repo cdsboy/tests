@@ -25,7 +25,7 @@ def get_bakabt_info(jenni, input):
       title = re.sub(r'<.+>', r'', title)
     except IndexError:
       return
-    jenni.say('Nyaa: %s' % title)
+    jenni.say('Bakabt: %s' % title)
 get_bakabt_info.rule = r'(?u).*((?<!!)https?://(www\.)?bakabt\.(me)|(com)/[0-9]+-)'
 get_bakabt_info.priority = 'high'
 
