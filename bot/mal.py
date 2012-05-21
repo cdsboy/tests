@@ -39,7 +39,7 @@ def mal_search(jenni, input):
       for anime in info[:DISPLAY_NUM]:
         jenni.say('%s: %s' % (anime['title'], mal_url(anime['id'])))
     else:
-      jenni.say('MAL Search Page: http://myanimelist.net/anime.php?q=%s' % title)
+      jenni.say('MAL Search Page: http://myanimelist.net/anime.php?q=%s' % urllib.quote(title))
   except urllib2.HTTPError:
     jenni.say('Sorry, there was an error performing your search.')
 mal_search.commands = ['malsearch']
