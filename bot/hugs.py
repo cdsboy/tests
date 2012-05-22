@@ -28,7 +28,8 @@ give_kiss.commands = ['gimme kiss', 'gimme kissu']
 give_kiss.priority = 'high'
 
 def molest(jenni, input):
-  match = re.search(r'molests %s' % jenni.nick, input)
+  print input
+  match = re.search(r'ACTION molests %s' % jenni.nick, input)
   if match:
     jenni.say(random.choice(MOLEST_SAYINGS))
 molest.rule = r'(?u).*(molests)'
