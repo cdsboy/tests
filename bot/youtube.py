@@ -22,7 +22,10 @@ def youtube_link_title(jenni, input):
     try:
       url_data = urlparse.urlparse(match.group(0))
       query = urlparse.parse_qs(url_data.query)
-      entry = yt_service.GetYouTubeVideoEntry(video_id=query["v"][0])
+      try:
+        entry = yt_service.GetYouTubeVideoEntry(video_id=query["v"][0])
+      except:
+        return
       jenni.say("Youtube: %s" % entry.media.title.text)
     except RequestError:
       pass
