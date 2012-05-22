@@ -27,8 +27,6 @@ def get_amiami_info(jenni, input):
                         str(soup.select("li.price")[0])).group(2)
     except IndexError:
       return
-    print price
-    print title
     jenni.say('AmiAmi: %s Price: %s' % (title, price))
 get_amiami_info.rule = r'(?u).*((?<!!)https?://www\.amiami\.com/top/detail)'
 get_amiami_info.priority = 'high'
