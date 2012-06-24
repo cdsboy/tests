@@ -10,6 +10,8 @@ http://inamidst.com/phenny/
 import sys, os, re, threading, imp
 import irc
 
+import pika
+
 home = os.getcwd()
 
 def decode(bytes):
@@ -27,6 +29,12 @@ class Jenni(irc.Bot):
         self.config = config
         self.doc = {}
         self.stats = {}
+
+        self.connection = pika.BlockingConnection(
+            pika.ConnectionParameters('localhost'))
+        self.channel = self.connection.channel()
+        self.channel.exchange_declare(exchange='links', type='fanout')
+
         self.setup()
 
     def setup(self):
@@ -164,6 +172,11 @@ class Jenni(irc.Bot):
                     return lambda msg: self.bot.msg(sender, msg)
                 elif attr == 'me':
                     return lambda msg: self.bot.msg(sender, '\x01ACTION %s\01' % msg)
+                elif attr == 'queue':
+                    return lambda body: \
+                        self.bot.channel.basic_publish(exchange='links',
+                                                       routing_key='',
+                                                       body=body)
                 return getattr(self.bot, attr)
 
         return JenniWrapper(self)
