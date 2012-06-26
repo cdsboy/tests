@@ -8,7 +8,7 @@ def handle_link(jenni, input):
   if match:
     info = urlparse(match.group(0))
     data = {
-        'author': input.sender,
+        'author': input.nick,
         'site': info.netloc,
         'title': 'blah',
         'link': match.group(0),

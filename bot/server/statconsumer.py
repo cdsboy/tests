@@ -59,11 +59,13 @@ class Stat(object):
     self.username = None
     self.lines    = 0
     self.seen     = None
+    self.joined   = None
 
   def new(self, username):
     self.id = '%s-%s' % (self.type, uuid.uuid1())
     self.username = username
     self.seen = datetime.datetime.utcnow()
+    self.joined = datetime.datetime.utcnow()
 
   def update(self, seen):
     self.lines += 1
@@ -73,9 +75,12 @@ class Stat(object):
     self.id       = doc['_id']
     self.username = doc['username']
     self.lines    = doc['lines']
-    datetime      = doc['seen']
+    date_str      = doc['seen']
     date_list     = [int(i) for i in re.split(r"[-\s:.]", date_str)]
     self.seen     = datetime.datetime(*date_list)
+    date_str      = doc['joined']
+    date_list     = [int(i) for i in re.split(r"[-\s:.]", date_str)]
+    self.joined   = datetime.datetime(*date_list)
 
   def serialize(self):
     doc = {
@@ -84,6 +89,7 @@ class Stat(object):
         'username' : self.username,
         'lines'    : self.lines,
         'seen'     : self.seen.isoformat(sep=' '),
+        'joined'   : self.joined.isoformat(sep=' '),
     }
     return doc
   
