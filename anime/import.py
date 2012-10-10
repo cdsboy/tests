@@ -37,7 +37,7 @@ def get_or_create_demo(name):
 
 for row in ws.rows:
   try:
-    show_name = shows.shows[row[12].value]
+    show_name = shows.shows[row[12].value.lower()]
   except:
     continue
   cur.execute("insert into entries(sex, age, show_id, demo_id, fav_genre, "
