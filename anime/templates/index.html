@@ -1,0 +1,87 @@
+<html>
+<head>
+  <title>Survey Recommendations</title>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      function getShows() {
+        var genres = $("#genres").val();
+        var leasts = $("#leasts").val();
+        if (genres != null) {
+          genres = genres.join();
+        }
+        if (leasts != null) {
+          leasts = leasts.join();
+        }
+        $.ajax({
+          type: "GET",
+          data: {
+            'genres': genres,
+            'leasts': leasts
+          },
+          url: "/ajax/search",
+          success: function(data) {
+            console.log("here");
+            $("#shows").empty();
+            for (i in data["result"]) {
+              $("#shows").append('<div class="show">' + data["result"][i][0] + '</div>');
+            }
+          }
+        });
+      }
+      getShows();
+      $("select").change(getShows);
+    });
+  </script>
+</head>
+<body>
+<div id="favorite">
+  <p>Favorite Genres:</p>
+  <select id="genres" multiple>
+    <option value="1">Slice of life</option>
+    <option value="2">Sci-Fi</option>
+    <option value="3">Mecha</option>
+    <option value="4">Drama</option>
+    <option value="5">Action</option>
+    <option value="6">Mahou Shoujo</option>
+    <option value="7">Music</option>
+    <option value="8">Ecchi</option>
+    <option value="9">Dystopian</option>
+    <option value="10">Sports</option>
+    <option value="11">Romance</option>
+    <option value="12">Horror</option>
+    <option value="13">Harem</option>
+    <option value="14">Mystery</option>
+    <option value="15">Hentai</option>
+    <option value="16">Comedy</option>
+    <option value="17">Fantasy</option>
+    <option value="18">Game</option>
+  </select>
+</div>
+<div id="least">
+  <p>Least Favorite Genres:</p>
+  <select id="leasts" multiple>
+    <option value="1">Slice of life</option>
+    <option value="2">Sci-Fi</option>
+    <option value="3">Mecha</option>
+    <option value="4">Drama</option>
+    <option value="5">Action</option>
+    <option value="6">Mahou Shoujo</option>
+    <option value="7">Music</option>
+    <option value="8">Ecchi</option>
+    <option value="9">Dystopian</option>
+    <option value="10">Sports</option>
+    <option value="11">Romance</option>
+    <option value="12">Horror</option>
+    <option value="13">Harem</option>
+    <option value="14">Mystery</option>
+    <option value="15">Hentai</option>
+    <option value="16">Comedy</option>
+    <option value="17">Fantasy</option>
+    <option value="18">Game</option>
+  </select>
+</div>
+<p>Recommended shows:</p>
+<div id="shows"></div>
+</body>
+</html>

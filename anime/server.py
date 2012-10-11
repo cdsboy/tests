@@ -10,9 +10,11 @@ def search():
   cur = conn.cursor()
 
   genres = request.args.get('genres', None, type=list)
-  genres = tuple([int(genre) for genre in genres if genre != u','])
+  if genres:
+    genres = tuple([int(genre) for genre in genres if genre != u','])
   leasts = request.args.get('leasts', None)
-  leasts = tuple([int(genre) for genre in leasts if genre != u','])
+  if leasts:
+    leasts = tuple([int(genre) for genre in leasts if genre != u','])
   sex = request.args.get('sex', None)
   age = request.args.get('age', None)
   demo = request.args.get('demo', None, type=int)
@@ -48,6 +50,9 @@ def search():
 
   return jsonify(result=result)
 
+@app.route("/")
+def index():
+  return render_template("index.html")
+
 if __name__ == '__main__':
-  app.debug = True
   app.run(host='0.0.0.0')
