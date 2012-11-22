@@ -9,12 +9,12 @@ def search():
   conn = psycopg2.connect("host=localhost dbname=recs user=cdsboy")
   cur = conn.cursor()
 
-  genres = request.args.get('genres', None, type=list)
+  genres = request.args.get('genres', None)
   if genres:
-    genres = tuple([int(genre) for genre in genres if genre != u','])
+    genres = tuple([int(genre) for genre in genres.split(",")])
   leasts = request.args.get('leasts', None)
   if leasts:
-    leasts = tuple([int(genre) for genre in leasts if genre != u','])
+    leasts = tuple([int(genre) for genre in leasts.split(",")])
   sex = request.args.get('sex', None)
   age = request.args.get('age', None)
   demo = request.args.get('demo', None, type=int)
@@ -41,6 +41,7 @@ def search():
     args.append(demo)
 
   qry += "group by show.show_name order by count desc"
+  print cur.mogrify(qry, args)
 
   cur.execute(qry, args)
   result = cur.fetchall()
