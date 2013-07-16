@@ -32,7 +32,7 @@ def amps(jenni, input):
     val = math.sqrt(data[2] / data[3])
 
   if val:
-    jenni.say("Amps: %sa" % val)
+    jenni.say("Amps: %.2fa" % val)
 amps.commands = ['amps']
 amps.example = '!amps 4.2v 1.8o'
 
@@ -48,7 +48,7 @@ def volts(jenni, input):
     val = math.sqrt(data[2] * data[3])
 
   if val:
-    jenni.say("Volts: %sv" % val)
+    jenni.say("Volts: %.2fv" % val)
 volts.commands = ['volts']
 volts.example = '!volts 12w 1.8o'
 
@@ -64,7 +64,7 @@ def watts(jenni, input):
     val = (data[1] ** 2) / data[3]
 
   if val:
-    jenni.say("Watts: %sw" % val)
+    jenni.say("Watts: %.2fw" % val)
 watts.commands = ['watts']
 watts.example = '!watts 4.2v 1.8o'
 
@@ -80,6 +80,6 @@ def ohms(jenni, input):
     val = (data[1] ** 2) / data[2]
 
   if val:
-    jenni.say("Ohms: %so" % val)
+    jenni.say("Ohms: %.2fo" % val)
 ohms.commands = ['ohms']
 ohms.example = '!ohms 4.2v 2a'
