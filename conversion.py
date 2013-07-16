@@ -8,29 +8,22 @@ ore = re.compile(r'([0-9.\-]+)o(hms)?')
 def parse(input_string):
   """ Returns a tuple of (amps, volts, watts, ohms) where any value that is not
       found will be None. """
-
-  asearch = are.search(input_string)
-  amps = None
-  if asearch:
-    amps = float(asearch.group(1))
   
-  vsearch = vre.search(input_string)
-  volts = None
-  if vsearch:
-    volts = float(vsearch.group(1))
-
-  wsearch = wre.search(input_string)
-  watts = None
-  if wsearch:
-    watts = float(wsearch.group(1))
-
-  osearch = ore.search(input_string)
-  ohms = None
-  if osearch:
-    ohms = float(osearch.group(1))
-
-  return amps if amps > 0 else None, volts if volts > 0 else None,\
-         watts if watts > 0 else None, ohms if ohms > 0 else None
+  data = {
+      'amps': are.search(input_string),
+      'volts': vre.search(input_string),
+      'watts': wre.search(input_string),
+      'ohms': ore.search(input_string)
+  }
+  for key, val in data.iteritems():
+    if val:
+      val = float(val.group(1))
+      if val > 0:
+        data[key] = val
+      else:
+        data[key] = None
+  
+  return data['amps'], data['volts'], data['watts'], data['ohms']
 
 def test():
   print parse("!watts 4.2volts .8o")
