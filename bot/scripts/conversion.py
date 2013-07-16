@@ -25,7 +25,7 @@ def amps(jenni, input):
   
   val = None
   if data[1] and data[2]:
-    val = math.sqrt(data[2] / data[1])
+    val = data[2] / data[1]
   elif data[1] and data[3]:
     val = data[1] / data[3]
   elif data[2] and data[3]:
@@ -41,7 +41,7 @@ def volts(jenni, input):
   
   val = None
   if data[0] and data[2]:
-    val = data[0] * data[2]
+    val = data[0] / data[2]
   elif data[0] and data[3]:
     val = data[0] * data[3]
   elif data[2] and data[3]:
@@ -59,7 +59,7 @@ def watts(jenni, input):
   if data[0] and data[1]:
     val = data[0] * data[1]
   elif data[0] and data[3]:
-    val = (data[0] ** 2) / data[3]
+    val = (data[0] ** 2) * data[3]
   elif data[1] and data[3]:
     val = (data[1] ** 2) / data[3]
 
