@@ -1,27 +1,19 @@
 import re
 
-are = re.compile(r'([0-9.\-]+)a(mps)?')
-vre = re.compile(r'([0-9.\-]+)v(olts)?')
-wre = re.compile(r'([0-9.\-]+)w(atts)?')
-ore = re.compile(r'([0-9.\-]+)o(hms)?')
-
 def parse(input_string):
   """ Returns a tuple of (amps, volts, watts, ohms) where any value that is not
       found will be None. """
   
   data = {
-      'amps': are.search(input_string),
-      'volts': vre.search(input_string),
-      'watts': wre.search(input_string),
-      'ohms': ore.search(input_string)
+      'amps':  re.search(r'([0-9.\-]+)a(mps)?', input_string),
+      'volts': re.search(r'([0-9.\-]+)v(olts)?', input_string),
+      'watts': re.search(r'([0-9.\-]+)w(atts)?', input_string),
+      'ohms':  re.search(r'([0-9.\-]+)o(hms)?', input_string)
   }
   for key, val in data.iteritems():
     if val:
       val = float(val.group(1))
-      if val > 0:
-        data[key] = val
-      else:
-        data[key] = None
+      data[key] = val if val > 0 else None
   
   return data['amps'], data['volts'], data['watts'], data['ohms']
 
