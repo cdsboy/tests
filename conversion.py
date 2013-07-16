@@ -1,9 +1,9 @@
 import re
 
-are = re.compile(r'(?!-)([0-9.]+)a(mps)?')
-vre = re.compile(r'(?!-)([0-9.]+)v(olts)?')
-wre = re.compile(r'(?!-)([0-9.]+)w(atts)?')
-ore = re.compile(r'(?!-)([0-9.]+)o(hms)?')
+are = re.compile(r'([0-9.\-]+)a(mps)?')
+vre = re.compile(r'([0-9.\-]+)v(olts)?')
+wre = re.compile(r'([0-9.\-]+)w(atts)?')
+ore = re.compile(r'([0-9.\-]+)o(hms)?')
 
 def parse(input_string):
   """ Returns a tuple of (amps, volts, watts, ohms) where any value that is not
@@ -29,12 +29,14 @@ def parse(input_string):
   if osearch:
     ohms = float(osearch.group(1))
 
-  return amps, volts, watts, ohms
+  return amps if amps > 0 else None, volts if volts > 0 else None,\
+         watts if watts > 0 else None, ohms if ohms > 0 else None
 
 def test():
   print parse("!watts 4.2volts .8o")
   print parse("!volts 5a .8o")
   print parse("!amps 12w .8v")
+  print parse("!amps -12w .8v")
 
 if __name__ == '__main__':
   test()
