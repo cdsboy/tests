@@ -5,7 +5,7 @@ def parse(input_string):
   """ Returns a tuple of (amps, volts, watts, ohms) where any value that is not
       found will be None. """
 
-  input_string = ' '.join(input_string.split(' ')[1:])
+  input_string = ' '.join(input_string.lower().split(' ')[1:])
 
   data = {
       'amps':  re.search(r'([0-9.\-]+)a(mps)?', input_string),
